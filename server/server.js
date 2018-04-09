@@ -13,23 +13,19 @@ app.use(express.static('public'));
 io.on('connection', (socket) => {
     console.log('New user connected');
     socket.on('disconnect', function () {
-
     });
 
     socket.on('createMessage', (message) => {
-        console.log(message);
+        socket.emit('newMessage', {
+            from: message.from,
+            text: message.text,
+            createAt: new Date().getTime()
+        });
     });
 
-    socket.emit('newMessage', {
-        form: "Vadim@bk.ru",
-        text: "Hi",
-        createAt: 123
+    socket.on('disconnect', function () {
+        console.log('Got disconnect!');
     });
-});
-
-
-io.on('disconnect', function () {
-    console.log('Got disconnect!');
 });
 
 server.listen(port, function () {
