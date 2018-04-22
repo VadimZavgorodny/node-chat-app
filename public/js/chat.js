@@ -45,7 +45,6 @@ socket.on('updateUserList', function (users) {
 socket.on('newLocationMessage', function (message) {
     let formattedTime = moment(message.createdAt).format('h:mm a');
     let template = $('#message-location-template').html();
-
     let html = Mustache.render(template, {
         url: message.url,
         from: message.from,

@@ -11,7 +11,7 @@ class Users {
 
     addUser(id, name, room) {
         let user = {id, name, room};
-        this.users.push(user)
+        this.users.push(user);
 
         return user;
     }
@@ -46,31 +46,3 @@ class Users {
 }
 
 module.exports = {Users};
-
-//addUser(id,name,room)
-//removeUser(id)
-//getUser(id)
-//getUserList
-
-
-// var users = [];
-//
-// var addUser = (id, name, room)
-// {
-//     users.push({});
-// }
-//
-// module.exports = {addUser};
-
-// class Person {
-//     constructor(name, age) {
-//         this.name = name;
-//         this.age = age;
-//     }
-//
-//     getUserDescription() {
-//         return `${this.name} is ${this.age} year old`;
-//     }
-// }
-//
-// var me = new Person('Andrew', 25);
