@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
             callback('Name and room are required');
         } else {
             let roomName = params.room !== undefined ? params.room.toLowerCase() : params.selected_room.toLowerCase();
-            console.log(roomName);
+
             //TODO Fixed check for unique user name
             if (!isUniqueName(users.users, params.name, roomName)) {
                 callback('Name in room must be unique');
