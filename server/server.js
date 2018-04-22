@@ -45,17 +45,16 @@ app.get('/chat/', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-    socket.on('join', async (params, callback) => {
-        if (!isRealString(params.name) || (!isRealString(params.room) && !params.selected_room)) {
+    socket.on('join', (params, callback) => {
+        if (!isRealString(params.name) || (!isRealString(params.room) && !isRealString(params.selected_room))) {
             callback('Name and room are required');
         } else {
-
-            let roomName = params.room.toLowerCase();
-
+            let roomName = params.room !== undefined ? params.room.toLowerCase() : params.selected_room.toLowerCase();
+            console.log(roomName);
             //TODO Fixed check for unique user name
-            // if (!isUniqueName(users.users, params.name, roomName)) {
-            //     await callback('Name in room must be unique');
-            // }
+            if (!isUniqueName(users.users, params.name, roomName)) {
+                callback('Name in room must be unique');
+            }
 
             if (params.selected_room) {
                 roomName = params.selected_room;
